@@ -50,6 +50,6 @@ app.use((err, _req, res, _next) => {
   res.status(500).json({ error: err.message || 'خطای سرور' });
 });
 
-app.listen(PORT, () => {
-  console.log(`Rikar API running on http://localhost:${PORT}`);
+app.listen(PORT, '0.0.0.0', () => {
+  console.log(`Rikar API running on port ${PORT}`);
 });
