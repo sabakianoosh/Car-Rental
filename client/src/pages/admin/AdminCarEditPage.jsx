@@ -107,7 +107,7 @@ export default function AdminCarEditPage() {
               <div className="field"><label className="label">قیمت پایه (۱۲ساعت)</label><input className="input" type="number" value={form.basePrice} onChange={(e) => set('basePrice', e.target.value)} required /></div>
               <div className="field"><label className="label">مبلغ هر ۱۲ ساعت بعدی</label><input className="input" type="number" value={form.extraPrice} onChange={(e) => set('extraPrice', e.target.value)} required /></div>
             </div>
-            <label className="row gap-sm mt-16"><input type="checkbox" checked={form.active} onChange={(e) => set('active', e.target.checked)} /> فعال در ناوگان</label>
+            <label className="row gap-sm mt-16"><input type="checkbox" checked={form.active} onChange={(e) => set('active', e.target.checked)} /> فعال در خودروها</label>
             <button type="submit" className={`btn btn-primary btn-block mt-24 ${loading ? 'loading' : ''}`}>
               {isNew ? 'ذخیره و ادامه' : 'ذخیره تغییرات'}
             </button>

@@ -3,7 +3,7 @@ import { Icon } from './Icon';
 
 const NAV = [
   { title: 'کلی', items: [{ k: 'dash', t: 'داشبورد', href: '/admin/dashboard', ic: 'dashboard' }] },
-  { title: 'ناوگان', items: [{ k: 'cars', t: 'خودروها و قیمت', href: '/admin/cars', ic: 'car' }] },
+  { title: 'خودرو', items: [{ k: 'cars', t: 'خودروها و قیمت', href: '/admin/cars', ic: 'car' }] },
   { title: 'کاربران', items: [{ k: 'kyc', t: 'بررسی گواهینامه', href: '/admin/kyc', ic: 'shield' }] },
   { title: 'عملیات شعبه', items: [
     { k: 'branch', t: 'تحویل و بازگشت', href: '/admin/branch', ic: 'key' },

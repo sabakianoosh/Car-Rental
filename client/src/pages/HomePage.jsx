@@ -78,13 +78,13 @@ export default function HomePage() {
         {!range && (
           <div className="alert alert-info mb-16">
             <Icon name="info" className="ic" />
-            <div><strong>این فهرست کل ناوگان فعال است.</strong> برای مشاهده موجودی واقعی یک بازه، تاریخ و ساعت شروع و پایان را انتخاب کنید.</div>
+            <div><strong>این فهرست کل خودروهای فعال است.</strong> برای مشاهده موجودی واقعی یک بازه، تاریخ و ساعت شروع و پایان را انتخاب کنید.</div>
           </div>
         )}
 
         <div className="results-head">
           <div>
-            <h1 className="section-title">{range ? 'خودروها' : 'ناوگان ری‌کار'}</h1>
+            <h1 className="section-title">خودروها</h1>
             <p className="section-sub">
               {range
                 ? `${toFa(availableCount)} از ${toFa(sorted.length)} خودرو در این بازه موجود است`
