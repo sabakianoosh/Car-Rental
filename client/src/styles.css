@@ -78,7 +78,11 @@ h1,h2,h3,h4,h5 { margin: 0; font-weight: 700; line-height: 1.4; }
 p { margin: 0; }
 ul { margin: 0; }
 :focus-visible { outline: 2px solid var(--green-500); outline-offset: 2px; }
-
+.dropzone:focus,
+.dropzone:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
 /* number tabular for prices/timers */
 .tnum { font-variant-numeric: tabular-nums; letter-spacing: .01em; }
 
