@@ -3,14 +3,125 @@ import db, { initDb } from './db.js';
 import { ADMIN_PASS, ADMIN_USER } from './routes/admin.js';
 
 const cars = [
-  { id: 'c1', name: 'پژو ۲۰۷', trim: 'اتوماتیک · ۱۴۰۲', base_price: 1200000, extra_price: 700000, seats: 5, fuel: 'بنزین', gear: 'اتوماتیک', km: '۱۸٬۰۰۰', color: 'سفید', image_url: '/cars/c1.png', active: 1 },
-  { id: 'c2', name: 'سمند LX', trim: 'دنده‌ای · ۱۴۰۱', base_price: 900000, extra_price: 500000, seats: 5, fuel: 'دوگانه', gear: 'دستی', km: '۴۲٬۰۰۰', color: 'نقره‌ای', image_url: '/cars/c2.png', active: 1 },
-  { id: 'c3', name: 'کیا سراتو', trim: 'اتوماتیک · ۱۳۹۹', base_price: 2200000, extra_price: 1300000, seats: 5, fuel: 'بنزین', gear: 'اتوماتیک', km: '۶۵٬۰۰۰', color: 'مشکی', image_url: '/cars/c3.png', active: 1 },
-  { id: 'c4', name: 'هیوندای i20', trim: 'اتوماتیک · ۱۴۰۰', base_price: 1800000, extra_price: 1000000, seats: 5, fuel: 'بنزین', gear: 'اتوماتیک', km: '۳۰٬۰۰۰', color: 'آبی', image_url: '/cars/c4.png', active: 1 },
-  { id: 'c5', name: 'پژو پارس', trim: 'دنده‌ای · ۱۴۰۲', base_price: 1000000, extra_price: 600000, seats: 5, fuel: 'بنزین', gear: 'دستی', km: '۱۲٬۰۰۰', color: 'سفید', image_url: '/cars/c5.png', active: 1 },
-  { id: 'c6', name: 'رنو ساندرو', trim: 'اتوماتیک · ۱۳۹۸', base_price: 1500000, extra_price: 850000, seats: 5, fuel: 'بنزین', gear: 'اتوماتیک', km: '۷۰٬۰۰۰', color: 'قرمز', image_url: '/cars/c6.png', active: 1 },
-  { id: 'c7', name: 'تویوتا کرولا', trim: 'اتوماتیک · ۱۴۰۱', base_price: 3500000, extra_price: 2000000, seats: 5, fuel: 'بنزین', gear: 'اتوماتیک', km: '۲۵٬۰۰۰', color: 'خاکستری', image_url: '/cars/c7.png', active: 1 },
-  { id: 'c8', name: 'نیسان اسکای‌لاین', trim: 'اتوماتیک · ۱۳۹۸', base_price: 4800000, extra_price: 2800000, seats: 4, fuel: 'بنزین', gear: 'اتوماتیک', km: '۳۸٬۰۰۰', color: 'نقره‌ای', image_url: '/cars/c8.png', active: 1 },
+  {
+    id: 'c1',
+    name: 'پژو ۲۰۷',
+    trim: 'اتوماتیک · ۱۴۰۲',
+    base_price: 1200000,
+    extra_price: 700000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۱۸٬۰۰۰',
+    color: 'سفید',
+    image_url: '207.webp',
+    active: 1
+  },
+
+  {
+    id: 'c2',
+    name: 'سمند LX',
+    trim: 'دنده‌ای · ۱۴۰۱',
+    base_price: 900000,
+    extra_price: 500000,
+    seats: 5,
+    fuel: 'دوگانه',
+    gear: 'دستی',
+    km: '۴۲٬۰۰۰',
+    color: 'نقره‌ای',
+    image_url: 'samandLX.webp',
+    active: 1
+  },
+
+  {
+    id: 'c3',
+    name: 'کیا سراتو',
+    trim: 'اتوماتیک · ۱۳۹۹',
+    base_price: 2200000,
+    extra_price: 1300000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۶۵٬۰۰۰',
+    color: 'مشکی',
+    image_url: 'kiaserato.webp',
+    active: 1
+  },
+
+  {
+    id: 'c4',
+    name: 'هیوندای i20',
+    trim: 'اتوماتیک · ۱۴۰۰',
+    base_price: 1800000,
+    extra_price: 1000000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۳۰٬۰۰۰',
+    color: 'آبی',
+    image_url: 'هیوندا ابی.webp',
+    active: 1
+  },
+
+  {
+    id: 'c5',
+    name: 'پژو پارس',
+    trim: 'دنده‌ای · ۱۴۰۲',
+    base_price: 1000000,
+    extra_price: 600000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'دستی',
+    km: '۱۲٬۰۰۰',
+    color: 'سفید',
+    image_url: 'پژو پارس.webp',
+    active: 1
+  },
+
+  {
+    id: 'c6',
+    name: 'رنو ساندرو',
+    trim: 'اتوماتیک · ۱۳۹۸',
+    base_price: 1500000,
+    extra_price: 850000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۷۰٬۰۰۰',
+    color: 'قرمز',
+    image_url: 'رنو قرمز.webp',
+    active: 1
+  },
+
+  {
+    id: 'c7',
+    name: 'تویوتا کرولا',
+    trim: 'اتوماتیک · ۱۴۰۱',
+    base_price: 3500000,
+    extra_price: 2000000,
+    seats: 5,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۲۵٬۰۰۰',
+    color: 'خاکستری',
+    image_url: 'toyota.webp',
+    active: 1
+  },
+
+  {
+    id: 'c8',
+    name: 'نیسان اسکای‌لاین',
+    trim: 'اتوماتیک · ۱۳۹۸',
+    base_price: 4800000,
+    extra_price: 2800000,
+    seats: 4,
+    fuel: 'بنزین',
+    gear: 'اتوماتیک',
+    km: '۳۸٬۰۰۰',
+    color: 'نقره‌ای',
+    image_url: 'skyline.webp',
+    active: 1
+  },
 ];
 
 initDb();
