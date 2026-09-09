@@ -36,6 +36,7 @@ export default function RentSummaryPage() {
   const [loading, setLoading] = useState(true);
   const [coverage, setCoverage] = useState('none');
   const [savingCov, setSavingCov] = useState(false);
+  const [error, setError] = useState('');
 
   const countdown = useHoldCountdown(rental?.hold_expires_at);
 
