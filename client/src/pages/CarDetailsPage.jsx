@@ -11,17 +11,24 @@ import { fa, toFa, toman, vehicleImageUrl } from '../utils/format';
 
 const carDetailsStyles = `
   .gallery { display:grid; grid-template-columns: 2fr 1fr; gap:12px; }
-  .gallery .main { aspect-ratio:16/10; border-radius:var(--r-md); background:linear-gradient(135deg,#eef2f7,#dde5ef); display:grid;place-items:center;color:var(--muted-2); }
+  .gallery .main { aspect-ratio:16/10; border-radius:var(--r-md); background:linear-gradient(135deg,#eef2f7,#dde5ef); display:grid;place-items:center;color:var(--muted-2); overflow:hidden; }
+  .gallery .main img { width:100%; height:100%; object-fit:cover; }
   .gallery .side { display:grid; grid-template-rows:1fr 1fr; gap:12px; }
-  .gallery .side > div { border-radius:var(--r-md); background:linear-gradient(135deg,#eef2f7,#e3e9f1); display:grid;place-items:center;color:var(--muted-2); min-height:80px; }
+  .gallery .side > div { border-radius:var(--r-md); background:linear-gradient(135deg,#eef2f7,#e3e9f1); display:grid;place-items:center;color:var(--muted-2); min-height:80px; overflow:hidden; }
   .spec-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:12px; }
-  .spec-item { display:flex; gap:10px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:var(--r-sm); }
+  .spec-item { display:flex; gap:10px; align-items:center; padding:12px 14px; border:1px solid var(--line); border-radius:var(--r-sm); min-width:0; }
   .spec-item .ib { width:36px;height:36px;border-radius:9px;background:var(--green-50);color:var(--green-700);display:grid;place-items:center;flex:none; }
   .spec-item .sl { font-size:12px;color:var(--muted); }
-  .spec-item .sv { font-weight:700;font-size:14px; }
+  .spec-item .sv { font-weight:700;font-size:14px; word-break:break-word; }
   .breadcrumb { color:var(--muted); font-size:13px; margin:16px 0; }
   .book-card { position:sticky; top:calc(var(--header-h) + 16px); }
-  @media (max-width:720px){ .gallery{grid-template-columns:1fr} .gallery .side{grid-template-columns:1fr 1fr;grid-template-rows:none} .spec-grid{grid-template-columns:1fr} }
+  @media (max-width:720px){
+    .gallery{grid-template-columns:1fr}
+    .gallery .side{grid-template-columns:1fr 1fr;grid-template-rows:none}
+    .spec-grid{grid-template-columns:1fr}
+    .book-card{position:static}
+    .breadcrumb{font-size:12px;margin:12px 0}
+  }
 `;
 
 function calcPrice(base, extra, hours) {
@@ -124,7 +131,7 @@ export default function CarDetailsPage() {
   ] : [];
 
   if (loading && !vehicle) {
-    return (<><UserHeader /><main className="container" style={{ padding: 40 }}><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
+    return (<><UserHeader /><main className="container page-loading"><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
   }
 
   if (error && !vehicle) {
@@ -157,7 +164,7 @@ export default function CarDetailsPage() {
 
             <div className="row between mb-8">
               <div>
-                <h1 style={{ fontSize: 24 }}>{vehicle.name}</h1>
+                <h1 className="car-title" style={{ fontSize: 24 }}>{vehicle.name}</h1>
                 <p className="muted">{vehicle.trim}</p>
               </div>
               {rangeState === 'ok' && (

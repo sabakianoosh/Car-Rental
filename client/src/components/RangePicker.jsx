@@ -151,7 +151,7 @@ export function RangePickerModal({ open, onClose, onApply, preset, blockedPeriod
 
   return (
     <div className="overlay" onClick={(e) => e.target === e.currentTarget && onClose()}>
-      <div className="modal" style={{ maxWidth: 480 }}>
+      <div className="modal rp-modal">
         <div className="modal-head">
           <h3>انتخاب بازه اجاره</h3>
           <button type="button" className="icon-btn" onClick={onClose}><Icon name="x" /></button>
@@ -195,7 +195,7 @@ export function RangePickerModal({ open, onClose, onApply, preset, blockedPeriod
               ) : <span key={`empty-${i}`} />
             ))}
           </div>
-          <div className="two-col" style={{ gridTemplateColumns: '1fr 1fr', gap: 12, marginTop: 14 }}>
+          <div className="rp-hours">
             <div className="field">
               <label className="label">ساعت شروع</label>
               <select className="select" value={startHour} onChange={(e) => onStartHourChange(+e.target.value)}>
@@ -235,6 +235,7 @@ export function RangePickerModal({ open, onClose, onApply, preset, blockedPeriod
       <style>{`
         .rp-week{display:grid;grid-template-columns:repeat(7,1fr);gap:4px;text-align:center;color:var(--muted);font-size:12px;margin-bottom:6px}
         .rp-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:4px}
+        .rp-hours{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:14px}
         .rp-day{height:38px;border:0;background:transparent;border-radius:var(--r-sm);font-size:14px;font-weight:600;color:var(--ink);transition:.12s;position:relative}
         .rp-day:hover:not(.disabled):not(.blocked){background:var(--green-50)}
         .rp-day.disabled{color:var(--muted-2);opacity:.5;cursor:not-allowed}
@@ -243,6 +244,10 @@ export function RangePickerModal({ open, onClose, onApply, preset, blockedPeriod
         .rp-day.sel{background:var(--green-600);color:#fff;text-decoration:none;opacity:1}
         .rp-day.blocked.sel{background:var(--danger);color:#fff}
         .rp-legend strong{display:block;margin-bottom:2px}
+        @media (max-width:480px){
+          .rp-hours{grid-template-columns:1fr}
+          .rp-day{height:40px;font-size:13px}
+        }
       `}</style>
     </div>
   );

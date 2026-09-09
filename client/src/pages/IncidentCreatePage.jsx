@@ -62,7 +62,7 @@ export default function IncidentCreatePage() {
   const rental = activeRental;
 
   if (!rental || rental.id !== rentalId) {
-    return (<><UserHeader /><main className="container" style={{ padding: 40 }}><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
+    return (<><UserHeader /><main className="container page-loading"><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
   }
 
   return (

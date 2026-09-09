@@ -63,14 +63,14 @@ export default function AdminBranchPage() {
   return (
     <AdminLayout active="branch">
       <h2 className="section-title">عملیات شعبه</h2>
-      <div className="card card-pad mb-16" style={{ maxWidth: 480 }}>
+        <div className="card card-pad mb-16" style={{ maxWidth: 480 }}>
         <div className="field mb-8"><label className="label">کد رزرو</label><input className="input" value={code} onChange={(e) => setCode(e.target.value.toUpperCase())} placeholder="RK-XXXXXX" /></div>
         <button type="button" className="btn btn-primary" onClick={search}>جستجو</button>
         {error && <div className="error-text mt-8">{error}</div>}
         {msg && <div className="success-text mt-8">{msg}</div>}
       </div>
       {rental && (
-        <div className="card card-pad two-col" style={{ gridTemplateColumns: '1fr 1fr' }}>
+        <div className="card card-pad form-grid">
           <div>
             <div className="strong">{rental.vehicle_name}</div>
             <div className="muted small mb-8">{rental.username} — {statusLabel(rental.status)}</div>

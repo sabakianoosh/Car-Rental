@@ -1,4 +1,5 @@
 import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { useEffect } from 'react';
 import { Icon } from './Icon';
 
 const NAV = [
@@ -14,7 +15,12 @@ const NAV = [
 export function AdminLayout({ children, active }) {
   const location = useLocation();
   const navigate = useNavigate();
-  const current = active || NAV.flatMap((g) => g.items).find((it) => location.pathname.startsWith(it.href))?.k;
+  const flatNav = NAV.flatMap((g) => g.items);
+  const current = active || flatNav.find((it) => location.pathname.startsWith(it.href))?.k;
+
+  useEffect(() => {
+    document.body.classList.remove('has-botnav');
+  }, []);
 
   return (
     <div className="admin">
@@ -38,6 +44,13 @@ export function AdminLayout({ children, active }) {
         </button>
       </aside>
       <div className="admin-main">
+        <nav className="admin-mobile-nav" aria-label="منوی مدیریت">
+          {flatNav.map((it) => (
+            <Link key={it.k} to={it.href} className={current === it.k ? 'active' : ''}>
+              <Icon name={it.ic} /><span>{it.t}</span>
+            </Link>
+          ))}
+        </nav>
         <header className="admin-top">
           <h1 className="admin-title">پنل مدیریت</h1>
         </header>

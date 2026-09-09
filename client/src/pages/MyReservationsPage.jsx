@@ -44,7 +44,7 @@ export default function MyReservationsPage() {
                 <div className="strong" style={{ fontSize: 18 }}>{delivered.vehicle_name}</div>
                 <div className="muted small">پس از تحویل خودرو، ثبت تصادف، خرابی و سایر رخدادها از اینجا انجام می‌شود.</div>
               </div>
-              <Link to="/rent/active" className="btn btn-primary btn-lg">ورود به اجاره فعال</Link>
+              <Link to="/rent/active" className="btn btn-primary btn-lg mobile-stack-cta">ورود به اجاره فعال</Link>
             </div>
             <div className="row gap-sm wrap">
               <Link to={`/incidents/new?rental=${delivered.id}&type=accident`} className="quick-chip urgent">تصادف</Link>

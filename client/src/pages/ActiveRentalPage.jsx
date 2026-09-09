@@ -64,7 +64,7 @@ export default function ActiveRentalPage() {
   }, [isAuthed, refresh]);
 
   if (loading && !rental) {
-    return (<><UserHeader active="active" /><main className="container" style={{ padding: 40 }}><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
+    return (<><UserHeader active="active" /><main className="container page-loading"><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
   }
 
   if (!rental) {

@@ -34,7 +34,7 @@ export default function IncidentDetailPage() {
   }, [id, isAuthed, navigate]);
 
   if (loading || !detail) {
-    return (<><UserHeader hasActive /><main className="container" style={{ padding: 40 }}><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
+    return (<><UserHeader hasActive /><main className="container page-loading"><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
   }
 
   const { incident, history, attachments, charges, decisions } = detail;

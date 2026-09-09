@@ -21,7 +21,7 @@ export default function ConfirmationPage() {
     return () => clearInterval(timer);
   }, [id, refreshActive]);
 
-  if (!rental) return (<><UserHeader /><main className="container" style={{ padding: 40 }}><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
+  if (!rental) return (<><UserHeader /><main className="container page-loading"><div className="spinner" style={{ margin: '40px auto' }} /></main></>);
 
   const isDelivered = rental.status === 'delivered';
   const isPaid = rental.status === 'paid';

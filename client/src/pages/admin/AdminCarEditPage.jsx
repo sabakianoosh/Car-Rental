@@ -88,7 +88,7 @@ export default function AdminCarEditPage() {
         <Link to="/admin/cars" className="btn btn-ghost btn-sm">بازگشت به لیست</Link>
       </div>
 
-      <div className="two-col" style={{ gridTemplateColumns: '1fr 320px', alignItems: 'start' }}>
+      <div className="admin-edit-layout">
         <div className="stack" style={{ '--gap': '16px' }}>
           <form className="card card-pad" onSubmit={save}>
             <h3 style={{ fontSize: 16, marginBottom: 16 }}>اطلاعات پایه</h3>
@@ -97,13 +97,13 @@ export default function AdminCarEditPage() {
             <div className="field mb-16"><label className="label">شناسه</label><input className="input" disabled={!isNew} value={form.id} onChange={(e) => set('id', e.target.value)} required /></div>
             <div className="field mb-16"><label className="label">نام/مدل</label><input className="input" value={form.name} onChange={(e) => set('name', e.target.value)} required /></div>
             <div className="field mb-16"><label className="label">تریم</label><input className="input" value={form.trim} onChange={(e) => set('trim', e.target.value)} /></div>
-            <div className="two-col" style={{ gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="form-grid">
               <div className="field"><label className="label">گیربکس</label><input className="input" value={form.gear} onChange={(e) => set('gear', e.target.value)} /></div>
               <div className="field"><label className="label">سوخت</label><input className="input" value={form.fuel} onChange={(e) => set('fuel', e.target.value)} /></div>
               <div className="field"><label className="label">صندلی</label><input className="input" type="number" value={form.seats} onChange={(e) => set('seats', e.target.value)} /></div>
               <div className="field"><label className="label">رنگ</label><input className="input" value={form.color} onChange={(e) => set('color', e.target.value)} /></div>
             </div>
-            <div className="two-col mt-16" style={{ gridTemplateColumns: '1fr 1fr', gap: 12 }}>
+            <div className="form-grid mt-16">
               <div className="field"><label className="label">قیمت پایه (۱۲ساعت)</label><input className="input" type="number" value={form.basePrice} onChange={(e) => set('basePrice', e.target.value)} required /></div>
               <div className="field"><label className="label">مبلغ هر ۱۲ ساعت بعدی</label><input className="input" type="number" value={form.extraPrice} onChange={(e) => set('extraPrice', e.target.value)} required /></div>
             </div>
