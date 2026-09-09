@@ -303,12 +303,29 @@ ul { margin: 0; }
 
 /* file upload / dropzone */
 .dropzone {
-  border: none; border-radius: var(--r-md);
-  background: var(--field); padding: 28px 20px; text-align: center;
-  cursor: pointer; transition: .15s var(--ease);
+  display: block;
+  border: none;
+  border-radius: var(--r-md);
+  background: transparent;
+  padding: 28px 20px;
+  text-align: center;
+  cursor: pointer;
+  transition: .15s var(--ease);
 }
-.dropzone:hover { background: var(--green-50); }
+.dropzone:hover { background: transparent; }
+.dropzone:hover .icon { color: var(--green-700); }
 .dropzone .icon { width: 44px; height: 44px; margin: 0 auto 10px; color: var(--green-600); }
+.dropzone input[type="file"] {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
 
 /* ==========================================================================
    Stepper (rent flow)

@@ -98,8 +98,8 @@ export default function ProfilePage() {
           )}
 
           {(user.kycStatus === 'not_submitted' || user.kycStatus === 'rejected') && (
-            <label className="dropzone">
-              <input type="file" accept="image/*" hidden onChange={upload} disabled={loading} />
+            <label className="dropzone" style={{ position: 'relative' }}>
+              <input type="file" accept="image/*" onChange={upload} disabled={loading} />
               <div className="icon"><Icon name="upload" /></div>
               <div className="strong">بارگذاری تصویر گواهینامه</div>
               <div className="muted small">JPG/PNG تا ۵ مگابایت</div>
