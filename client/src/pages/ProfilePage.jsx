@@ -19,10 +19,40 @@ export default function ProfilePage() {
   }, [isAuthed, navigate]);
 
   useEffect(() => {
-    if (isAuthed) {
-      api.kycStatus().then(setKyc).catch(() => {});
-    }
-  }, [isAuthed]);
+    if (!isAuthed) return;
+  
+    let interval;
+  
+    const checkKyc = async () => {
+      try {
+        const status = await api.kycStatus();
+        setKyc(status);
+  
+        // وقتی تأیید شد، اطلاعات کاربر را هم به‌روز می‌کنیم
+        if (status.status === 'approved') {
+          await refresh();
+  
+          if (interval) {
+            clearInterval(interval);
+          }
+        }
+      } catch (err) {
+        console.error('KYC status check failed:', err);
+      }
+    };
+  
+    // یک بار در ابتدا
+    checkKyc();
+  
+    // سپس هر 1 ثانیه
+    interval = setInterval(checkKyc, 1000);
+  
+    return () => {
+      if (interval) {
+        clearInterval(interval);
+      }
+    };
+  }, [isAuthed, refresh]);
 
   const upload = async (e) => {
     const file = e.target.files?.[0];
@@ -80,8 +110,11 @@ export default function ProfilePage() {
             <div className="alert alert-warn"><Icon name="clock" className="ic" /><div>مدارک شما در انتظار بررسی ادمین است.</div></div>
           )}
 
-          {user.kycStatus === 'approved' && (
-            <div className="alert alert-success"><Icon name="checkCircle" className="ic" /><div>گواهینامه تأیید شده — می‌توانید رزرو و پرداخت کنید.</div></div>
+          {(user.kycStatus === 'approved' || kyc?.status === 'approved') && (
+            <div className="alert alert-success">
+              <Icon name="checkCircle" className="ic" />
+              <div>گواهینامه تأیید شده — می‌توانید رزرو و پرداخت کنید.</div>
+            </div>
           )}
 
           {error && <div className="error-text mt-16"><Icon name="alert" />{error}</div>}

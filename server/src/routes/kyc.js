@@ -43,21 +43,57 @@ router.post('/upload', requireUser, upload.single('license'), (req, res) => {
     return res.status(400).json({ error: 'فایل گواهینامه الزامی است.' });
   }
 
-  const user = db.prepare('SELECT kyc_file_path FROM users WHERE id = ?').get(req.user.id);
+  const user = db
+    .prepare('SELECT kyc_file_path FROM users WHERE id = ?')
+    .get(req.user.id);
+
   if (user.kyc_file_path) {
-    const oldPath = path.join(uploadsDir, path.basename(user.kyc_file_path));
-    if (fs.existsSync(oldPath)) fs.unlinkSync(oldPath);
+    const oldPath = path.join(
+      uploadsDir,
+      path.basename(user.kyc_file_path)
+    );
+
+    if (fs.existsSync(oldPath)) {
+      fs.unlinkSync(oldPath);
+    }
   }
 
+  // ابتدا وضعیت را pending می‌کنیم
   db.prepare(`
     UPDATE users
-    SET kyc_status = 'pending', kyc_file_path = ?, kyc_rejection_reason = NULL
+    SET
+      kyc_status = 'pending',
+      kyc_file_path = ?,
+      kyc_rejection_reason = NULL,
+      kyc_reviewed_at = NULL
     WHERE id = ?
   `).run(req.file.filename, req.user.id);
 
-  res.json({ ok: true, status: 'pending' });
-});
+  // پاسخ فوری به فرانت
+  res.json({
+    ok: true,
+    status: 'pending',
+  });
 
+  // بعد از 3 ثانیه به صورت خودکار تأیید می‌شود
+  setTimeout(() => {
+    try {
+      db.prepare(`
+        UPDATE users
+        SET
+          kyc_status = 'approved',
+          kyc_rejection_reason = NULL,
+          kyc_reviewed_at = datetime('now')
+        WHERE id = ?
+          AND kyc_status = 'pending'
+      `).run(req.user.id);
+
+      console.log(`KYC auto-approved for user ${req.user.id}`);
+    } catch (error) {
+      console.error('KYC auto-approval error:', error);
+    }
+  }, 3000);
+});
 router.get('/file', requireUser, (req, res) => {
   const user = db.prepare('SELECT kyc_file_path FROM users WHERE id = ?').get(req.user.id);
   if (!user?.kyc_file_path) {
