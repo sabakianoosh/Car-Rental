@@ -303,7 +303,7 @@ ul { margin: 0; }
 
 /* file upload / dropzone */
 .dropzone {
-  border: 1.5px dashed var(--line); border-radius: var(--r-md);
+  border: 1.5px solid var(--line); border-radius: var(--r-md);
   background: var(--field); padding: 28px 20px; text-align: center;
   cursor: pointer; transition: .15s var(--ease);
 }
